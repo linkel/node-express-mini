@@ -1,8 +1,9 @@
 const express = require('express');
 const db = require('./data/db.js');
-
+const cors = require('cors');
 const server = express();
 server.use(express.json());
+server.use(cors())
 
 server.get('/', (req, res) => {
   res.send('Go to /api/users to grab that sweet user info.');

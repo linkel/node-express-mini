@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.user {
+  margin: 20px;
+  padding: 20px;
+  width: 200px;
+  box-shadow:30px 30px teal;
+  border: 2px solid rgb(0, 88, 88);
+  border-radius: 3px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
