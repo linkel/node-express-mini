@@ -33,6 +33,26 @@ server.get('/api/users/:id', (req, res) => {
   })
 })
 
-// once the server is fully configured we can have it "listen" for connections on a particular "port"
-// the callback function passed as the second argument will run once when the server starts
+server.post('/api/users', (req, res) => {
+  const body = req.body
+  if (!body.name || !body.bio) {
+    res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+  } else {
+    db.insert(body)
+    .then(idObj => {
+      db.findById(idObj.id)
+      .then(user => {
+        console.log(user)
+        res.status(201).json(user)
+      })
+      .catch(err => {
+        res.status(500).json({ error: "There was an error while saving the user to the database" })
+      })
+    })
+    .catch(err => {
+      res.status(500).json({ error: "There was an error while saving the user to the database" })
+    })
+  }
+})
+
 server.listen(8000, () => console.log('API running on port 8000'));
